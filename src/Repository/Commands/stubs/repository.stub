@@ -1,0 +1,19 @@
+<?php
+
+namespace DummyNamespace;
+
+use Dees040\Repository\Eloquent\BaseRepository;
+use DummyNamespace\Contracts\DummyRepository;
+
+class DummyClass extends BaseRepository implements DummyRepository
+{
+    /**
+     * Get the base model.
+     *
+     * @return string
+     */
+    public function getModel()
+    {
+        return null;
+    }
+}

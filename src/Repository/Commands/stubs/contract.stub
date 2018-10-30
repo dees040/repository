@@ -1,0 +1,10 @@
+<?php
+
+namespace DummyNamespace;
+
+use Dees040\Repository\Contracts\Repository;
+
+interface DummyClass extends Repository
+{
+
+}
