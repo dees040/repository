@@ -33,6 +33,18 @@ abstract class BaseRepository implements Repository, CriteriaRepository
     public function __construct()
     {
         $this->buildModel();
+
+        $this->boot();
+    }
+
+    /**
+     * Boot the repository.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
     }
 
     /**
