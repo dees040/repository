@@ -106,9 +106,13 @@ class RequestCriteria implements Criteria
      */
     protected function getFieldsFromRequest()
     {
-        $givenFields = $this->request->get('search_fields', '');
+        $givenFields = $this->request->get('search_fields', null);
 
-        $fields = explode(',', $givenFields);
+        // If the given fields is a string with more than 0 characters we can
+        // split the fields based on the delimiter.
+        $fields = is_string($givenFields) && strlen($givenFields) > 0
+            ? explode(',', $givenFields)
+            : [];
 
         if (count($fields) > 0) {
             return $fields;
