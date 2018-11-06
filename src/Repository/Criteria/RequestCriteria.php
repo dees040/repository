@@ -161,6 +161,13 @@ class RequestCriteria implements Criteria
         foreach ($searchableFields as $key => $contract) {
             $searchableField = is_string($key) ? $key : $contract;
 
+            // It could happen that the searchable field has a search operator
+            // specified. If that's the case we need to get the actual field
+            // from the string.
+            if (str_contains($searchableField, ':')) {
+                $searchableField = head(explode(':', $searchableField));
+            }
+
             if ($searchableField == $field) {
                 // At this point we know that the field is searchable and we can
                 // check if the key is a contract or not.
