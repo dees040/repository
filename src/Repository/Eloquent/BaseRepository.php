@@ -268,7 +268,7 @@ abstract class BaseRepository implements Repository, CriteriaRepository
      */
     public function orderBy($column, $direction = 'asc')
     {
-        $this->model->orderBy($column, $direction);
+        $this->model = $this->model->orderBy($column, $direction);
 
         return $this;
     }
@@ -281,7 +281,7 @@ abstract class BaseRepository implements Repository, CriteriaRepository
      */
     public function with($relations)
     {
-        $this->model->with($relations);
+        $this->model = $this->model->with($relations);
 
         return $this;
     }
@@ -294,7 +294,7 @@ abstract class BaseRepository implements Repository, CriteriaRepository
      */
     public function has($relation)
     {
-        $this->model->has($relation);
+        $this->model = $this->model->has($relation);
 
         return $this;
     }
@@ -309,7 +309,7 @@ abstract class BaseRepository implements Repository, CriteriaRepository
      */
     public function whereHas($relation, \Closure $closure)
     {
-        $this->model->whereHas($relation, $closure);
+        $this->model = $this->model->whereHas($relation, $closure);
 
         return $this;
     }
@@ -324,7 +324,7 @@ abstract class BaseRepository implements Repository, CriteriaRepository
      */
     public function orWhereHas($relation, \Closure $closure)
     {
-        $this->model->orWhereHas($relation, $closure);
+        $this->model = $this->model->orWhereHas($relation, $closure);
 
         return $this;
     }
