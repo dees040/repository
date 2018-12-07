@@ -165,6 +165,27 @@ interface Repository
     public function orWhereHas($relation, \Closure $closure);
 
     /**
+     * Sync the intermediate entities with a list of IDs or collection of models.
+     *
+     * @param  mixed  $id
+     * @param  string  $relation
+     * @param  array  $attributes
+     * @param  bool  $detaching
+     * @return mixed
+     */
+    public function sync($id, $relation, $attributes, $detaching = true);
+
+    /**
+     * Sync the intermediate entities with a list of IDs without detaching.
+     *
+     * @param  mixed  $id
+     * @param  string  $relation
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function syncWithoutDetaching($id, $relation, $attributes);
+
+    /**
      * Get all fields which are searchable.
      *
      * @return array

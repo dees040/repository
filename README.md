@@ -37,6 +37,8 @@ The service provider is automatically added via Laravel package discovery.
 - `has($relation)`  
 - `whereHas($relation, \Closure $closure)`  
 - `orWhereHas($relation, \Closure $closure)`  
+- `sync($id, $relation, $attributes, $detaching = true)`  
+- `syncWithoutDetaching($id, $relation, $attributes)`  
 
 ## Usage
 

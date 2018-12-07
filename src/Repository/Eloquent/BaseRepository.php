@@ -330,6 +330,32 @@ abstract class BaseRepository implements Repository, CriteriaRepository
     }
 
     /**
+     * Sync the intermediate entities with a list of IDs or collection of models.
+     *
+     * @param  mixed  $id
+     * @param  string  $relation
+     * @param  array  $attributes
+     * @param  bool  $detaching
+     * @return mixed
+     */
+    public function sync($id, $relation, $attributes, $detaching = true)
+    {
+        return $this->find($id)->{$relation}()->sync($attributes, $detaching);
+    }
+    /**
+     * Sync the intermediate entities with a list of IDs without detaching.
+     *
+     * @param  mixed  $id
+     * @param  string  $relation
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function syncWithoutDetaching($id, $relation, $attributes)
+    {
+        return $this->sync($id, $relation, $attributes, false);
+    }
+
+    /**
      * Push a new criteria into the criteria stack.
      *
      * @param  \Dees040\Repository\Contracts\Criteria|string  $criteria
