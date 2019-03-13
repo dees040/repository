@@ -197,6 +197,17 @@ abstract class BaseRepository implements Repository, CriteriaRepository
     }
 
     /**
+     * Create multiple new entities by the given attributes.
+     *
+     * @param  array  $attributes
+     * @return bool
+     */
+    public function insert(array $attributes = [])
+    {
+        return $this->model->insert($attributes);
+    }
+
+    /**
      * Update the given attributes for the entity matching the given primary
      * key.
      *
