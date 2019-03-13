@@ -91,4 +91,27 @@ class BaseRepositoryTest extends PackageTestCase
         $this->assertDatabaseHas('posts', $attributes);
         $this->assertEquals($model->title, $attributes['title']);
     }
+
+    /** @test */
+    public function it_can_insert_multiple_models()
+    {
+        $repository = app(PostRepository::class);
+
+        $attributes = [
+            [
+                'title' => 'First post',
+                'body' => 'Lorem ipsum',
+            ],
+            [
+                'title' => 'Second post',
+                'body' => 'Lorem ipsum',
+            ],
+        ];
+
+        $repository->insert($attributes);
+
+        foreach ($attributes as $array) {
+            $this->assertDatabaseHas('posts', $array);
+        }
+    }
 }

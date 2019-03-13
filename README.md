@@ -28,6 +28,7 @@ The service provider is automatically added via Laravel package discovery.
 - `findWhere(array $where, $columns = ['*'])`  
 - `firstOrCreate(array $attributes, array $values = [])`  
 - `create(array $attributes = [])`  
+- `insert(array $attributes = [])`  
 - `update($id, array $attributes)`  
 - `updateOrCreate(array $attributes, array $values = [])`  
 - `delete($id)`  
