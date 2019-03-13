@@ -170,6 +170,30 @@ abstract class BaseRepository implements Repository, CriteriaRepository
     }
 
     /**
+     * Find entities based on an array of where in clauses.
+     *
+     * @param  array  $where
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function findWhereIn(array $where, $columns = ['*'])
+    {
+        $this->applyCriteria();
+
+        $model = $this->model;
+
+        foreach ($where as $key => $value) {
+            $model = $model->whereIn($key, $value);
+        }
+
+        $models = $model->get($columns);
+
+        $this->resetModel();
+
+        return $models;
+    }
+
+    /**
      * Get the first entity matching the attributes or create it.
      *
      * @param  array  $attributes

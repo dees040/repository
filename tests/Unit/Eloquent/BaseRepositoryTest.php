@@ -43,6 +43,52 @@ class BaseRepositoryTest extends PackageTestCase
     }
 
     /** @test */
+    public function it_can_find_models_where_in()
+    {
+        $strings = [str_random(10), str_random(10)];
+
+        foreach ($strings as $string) {
+            $this->modelFactory->of(Post::class)->times(10)->create([
+                'title' => $string,
+            ]);
+        }
+
+        $repository = app(PostRepository::class);
+
+        $results = $repository->findWhereIn([
+            'title' => [$strings[0]],
+        ])->toArray();
+
+        $this->assertCount(10, $results);
+    }
+
+    /** @test */
+    public function it_can_find_models_where_in_multiple()
+    {
+        $strings = [str_random(10), str_random(10)];
+
+        foreach ($strings as $string) {
+            $this->modelFactory->of(Post::class)->times(5)->create([
+                'title' => $string,
+            ]);
+
+            $this->modelFactory->of(Post::class)->times(5)->create([
+                'title' => $string,
+                'body' => $string,
+            ]);
+        }
+
+        $repository = app(PostRepository::class);
+
+        $results = $repository->findWhereIn([
+            'title' => [$strings[0]],
+            'body' => [$strings[0]],
+        ])->toArray();
+
+        $this->assertCount(5, $results);
+    }
+
+    /** @test */
     public function it_can_find_a_model_by_id()
     {
         $models = $this->modelFactory->of(Post::class)->times(10)->create();
