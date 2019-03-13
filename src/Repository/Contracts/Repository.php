@@ -67,6 +67,15 @@ interface Repository
     public function findWhere(array $where, $columns = ['*']);
 
     /**
+     * Find entities based on an array of where in clauses.
+     *
+     * @param  array  $where
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function findWhereIn(array $where, $columns = ['*']);
+
+    /**
      * Get the first record matching the attributes or create it.
      *
      * @param  array  $attributes
@@ -82,6 +91,14 @@ interface Repository
      * @return mixed
      */
     public function create(array $attributes = []);
+
+    /**
+     * Create multiple new entities by the given attributes.
+     *
+     * @param  array  $attributes
+     * @return bool
+     */
+    public function insert(array $attributes = []);
 
     /**
      * Update the given attributes for the entity matching the given primary
