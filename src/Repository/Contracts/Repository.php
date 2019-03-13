@@ -67,6 +67,15 @@ interface Repository
     public function findWhere(array $where, $columns = ['*']);
 
     /**
+     * Find entities based on an array of where clauses.
+     *
+     * @param  array  $where
+     * @param  array  $columns
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
+    public function findWhere(array $where, $columns = ['*']);
+
+    /**
      * Get the first record matching the attributes or create it.
      *
      * @param  array  $attributes
