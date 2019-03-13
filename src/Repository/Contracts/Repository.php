@@ -120,6 +120,14 @@ interface Repository
     public function deleteWhere(array $where);
 
     /**
+     * Delete entities based on an array of where in clauses.
+     *
+     * @param  array  $where
+     * @return int
+     */
+    public function deleteWhereIn(array $where);
+
+    /**
      * Add an order by filter to the entity query.
      *
      * @param  string  $column

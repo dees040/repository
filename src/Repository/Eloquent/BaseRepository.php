@@ -260,6 +260,27 @@ abstract class BaseRepository implements Repository, CriteriaRepository
     }
 
     /**
+     * Delete entities based on an array of where in clauses.
+     *
+     * @param  array  $where
+     * @return int
+     */
+    public function deleteWhereIn(array $where)
+    {
+        $model = $this->model;
+
+        foreach ($where as $key => $value) {
+            $model = $model->whereIn($key, $value);
+        }
+
+        $deletedCount = $model->delete();
+
+        $this->resetModel();
+
+        return $deletedCount;
+    }
+
+    /**
      * Add an order by filter to the entity query.
      *
      * @param  string  $column

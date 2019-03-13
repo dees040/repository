@@ -91,4 +91,71 @@ class BaseRepositoryTest extends PackageTestCase
         $this->assertDatabaseHas('posts', $attributes);
         $this->assertEquals($model->title, $attributes['title']);
     }
+
+    /** @test */
+    public function it_can_delete_where_in()
+    {
+        $strings = [str_random(10), str_random(10)];
+
+        foreach ($strings as $string) {
+            $this->modelFactory->of(Post::class)->times(10)->create([
+                'title' => $string,
+            ]);
+        }
+
+        $repository = app(PostRepository::class);
+
+        $result = $repository->deleteWhereIn([
+            'title' => [$strings[0]],
+        ]);
+
+        $this->assertEquals($result, 10);
+
+        $this->assertDatabaseMissing('posts', [
+            'title' => $strings[0],
+        ]);
+
+        $this->assertDatabaseHas('posts', [
+            'title' => $strings[1],
+        ]);
+    }
+
+    /** @test */
+    public function it_can_delete_where_in_multiple()
+    {
+        $strings = [str_random(10), str_random(10)];
+
+        foreach ($strings as $string) {
+            $this->modelFactory->of(Post::class)->times(5)->create([
+                'title' => $string,
+            ]);
+
+            $this->modelFactory->of(Post::class)->times(5)->create([
+                'title' => $string,
+                'body' => $string,
+            ]);
+        }
+
+        $repository = app(PostRepository::class);
+
+        $result = $repository->deleteWhereIn([
+            'title' => [$strings[0]],
+            'body' => [$strings[0]],
+        ]);
+
+        $this->assertEquals($result, 5);
+
+        $this->assertDatabaseMissing('posts', [
+            'title' => $strings[0],
+            'body' => $strings[0],
+        ]);
+
+        $this->assertDatabaseHas('posts', [
+            'title' => $strings[0],
+        ]);
+
+        $this->assertDatabaseHas('posts', [
+            'title' => $strings[1],
+        ]);
+    }
 }
