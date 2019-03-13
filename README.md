@@ -32,6 +32,7 @@ The service provider is automatically added via Laravel package discovery.
 - `updateOrCreate(array $attributes, array $values = [])`  
 - `delete($id)`  
 - `deleteWhere(array $where)`  
+- `deleteWhereIn(array $where)`  
 - `orderBy($column, $direction = 'asc')`  
 - `with($relations)`  
 - `has($relation)`  
