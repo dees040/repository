@@ -26,12 +26,15 @@ The service provider is automatically added via Laravel package discovery.
 - `findOrFail($id, $columns = ['*'])`  
 - `findByField($field, $value, $columns = ['*'])`  
 - `findWhere(array $where, $columns = ['*'])`  
+- `findWhereIn(array $where, $columns = ['*'])`  
 - `firstOrCreate(array $attributes, array $values = [])`  
 - `create(array $attributes = [])`  
+- `insert(array $attributes = [])`  
 - `update($id, array $attributes)`  
 - `updateOrCreate(array $attributes, array $values = [])`  
 - `delete($id)`  
 - `deleteWhere(array $where)`  
+- `deleteWhereIn(array $where)`  
 - `orderBy($column, $direction = 'asc')`  
 - `with($relations)`  
 - `has($relation)`  
