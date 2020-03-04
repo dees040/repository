@@ -38,7 +38,7 @@ class RequestCriteriaTest extends PackageTestCase
             'direction' => 'desc',
         ]];
 
-        $this->assertArraySubset($orders, $values);
+        $this->assertEquals($orders, $values);
     }
 
     /** @test */
@@ -114,7 +114,8 @@ class RequestCriteriaTest extends PackageTestCase
             ]
         ];
 
-        $this->assertArraySubset($wheres, $values);
+
+        $this->assertEquals($wheres, $values);
         $this->assertEquals(1, $models->first()->id);
     }
 
