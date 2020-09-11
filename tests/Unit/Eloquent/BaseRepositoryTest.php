@@ -4,6 +4,7 @@ namespace Dees040\Repository\Tests\Unit\Eloquent;
 
 use Dees040\Repository\Tests\App\Models\Post;
 use Dees040\Repository\Tests\PackageTestCase;
+use Illuminate\Support\Str;
 use Dees040\Repository\Tests\App\Providers\Contracts\PostRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -45,7 +46,7 @@ class BaseRepositoryTest extends PackageTestCase
     /** @test */
     public function it_can_find_models_where_in()
     {
-        $strings = [str_random(10), str_random(10)];
+        $strings = [Str::random(10), Str::random(10)];
 
         foreach ($strings as $string) {
             $this->modelFactory->of(Post::class)->times(10)->create([
@@ -65,7 +66,7 @@ class BaseRepositoryTest extends PackageTestCase
     /** @test */
     public function it_can_find_models_where_in_multiple()
     {
-        $strings = [str_random(10), str_random(10)];
+        $strings = [Str::random(10), Str::random(10)];
 
         foreach ($strings as $string) {
             $this->modelFactory->of(Post::class)->times(5)->create([
@@ -164,7 +165,7 @@ class BaseRepositoryTest extends PackageTestCase
     /** @test */
     public function it_can_delete_where_in()
     {
-        $strings = [str_random(10), str_random(10)];
+        $strings = [Str::random(10), Str::random(10)];
 
         foreach ($strings as $string) {
             $this->modelFactory->of(Post::class)->times(10)->create([
@@ -192,7 +193,7 @@ class BaseRepositoryTest extends PackageTestCase
     /** @test */
     public function it_can_delete_where_in_multiple()
     {
-        $strings = [str_random(10), str_random(10)];
+        $strings = [Str::random(10), Str::random(10)];
 
         foreach ($strings as $string) {
             $this->modelFactory->of(Post::class)->times(5)->create([
